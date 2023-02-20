@@ -1,9 +1,19 @@
 from channels.generic.websocket import WebsocketConsumer
+from asgiref.sync import async_to_sync
+import json
 
 class TestConsumer(WebsocketConsumer):
     groups = ["broadcast"]
 
     def connect(self):
+        self.room_name = "test_consumer"
+        self.room_group_name = "test_group_name"
+        async_to_sync(self.channel_layer.group_send())(
+            self.room_name, self.room_group_name
+        )
+        self.accept()
+        self.send(text_data=json.dumps({'status': 'connected'}))
+
         # Called on connection.
         # To accept the connection call:
         self.accept()
