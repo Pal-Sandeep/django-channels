@@ -11,13 +11,15 @@ import os
 from django.routing import ProtocolTypeRouter, URLRouter
 from django.core.asgi import get_asgi_application
 from django.urls import path
+from home.consumers import TestConsumer
+
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DjangoChannels.settings')
 
 application = get_asgi_application()
 
 ws_patterns = [
-    path('test/', )
+    path('ws/test', TestConsumer)
 ]
 
 application = ProtocolTypeRouter({
