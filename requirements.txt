@@ -9,5 +9,5 @@ django-cors-headers
 python-decouple==3.7
 pillow
 flake8==5.0.4
-django-redis=5.2.0
+django-redis
 channels
