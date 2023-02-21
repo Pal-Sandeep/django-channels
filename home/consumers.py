@@ -14,16 +14,6 @@ class TestConsumer(WebsocketConsumer):
         self.accept()
         self.send(text_data=json.dumps({'status': 'connected'}))
 
-        # Called on connection.
-        # To accept the connection call:
-        self.accept()
-        # Or accept the connection and specify a chosen subprotocol.
-        # A list of subprotocols specified by the connecting client
-        # will be available in self.scope['subprotocols']
-        self.accept("subprotocol")
-        # To reject the connection, call:
-        self.close()
-
     def receive(self, text_data=None, bytes_data=None):
         # Called with either text_data or bytes_data for each frame
         # You can call:
